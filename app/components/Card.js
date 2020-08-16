@@ -1,17 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
-import AppText from './AppText'
+import { StyleSheet, View } from 'react-native'
+import { Image } from "react-native-expo-image-cache";
 
+import AppText from './AppText'
 import colors from "../config/colors"
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default function Card({ title, subTitle, imageURL, onPress }) {
+export default function Card({ title, subTitle, imageURL, onPress, thumbnailUrl }) {
     const navigation = useNavigation()
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.card}>
-                <Image style={styles.image} source={{ uri: imageURL }}></Image>
+                <Image style={styles.image} uri={imageURL} preview={{ uri: thumbnailUrl }} tint="light"/>
                 <View style={styles.detailsContainer}>
                     <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
                     <AppText style={styles.subtitle} numberOfLines={2}>{subTitle}</AppText>

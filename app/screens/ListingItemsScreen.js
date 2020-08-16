@@ -27,10 +27,10 @@ import useApi from '../hooks/useApi'
 // ]
 export default function ListingItemsScreen({ navigation }) {
     const getProductsApi = useApi(product_list_api.fetchProducts);
-
     useEffect(() => {
         getProductsApi.request();
     }, []);
+    
 //console.log(getProductsApi)
     
 
@@ -52,6 +52,7 @@ export default function ListingItemsScreen({ navigation }) {
                         subTitle={"Rs. " + item.price}
                         imageURL={item.image[0].url}
                         onPress={() => navigation.navigate(routes.ITEM_DETAILS, item)}
+                        thumbnailUrl={item.image[0].thumbnailUrl}
                     />
                 }
             />}

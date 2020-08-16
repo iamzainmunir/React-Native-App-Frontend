@@ -26,15 +26,19 @@ const items = [
 export default function PostItemScreen() {
     const [uploadVisible, setUploadVisible] = useState(false);
     const [progress, setProgress] = useState(0)
+    const [uploadComplete, setUploadComplete] = useState(false)
 
     const location = useLocation();
 
     const handleSubmit = async (product, { resetForm }) => {
         setProgress(0)
+        setUploadComplete(false)
         setUploadVisible(true)
         const result = await productsApi.postProducts({...product, location },
             (progress) => setProgress(progress)
         );
+        setUploadComplete(true);
+        
         
         if(!result.ok) {
             setUploadVisible(false)
@@ -45,7 +49,7 @@ export default function PostItemScreen() {
     }
     return (
         <Screen style={styles.container}>
-            <UploadProgress onDone={() => setUploadVisible(false)} progress={progress} visible={uploadVisible}/>
+            <UploadProgress onDone={() => setUploadVisible(false)} visible={uploadVisible} uploadComplete={uploadComplete}/>
         <AppForm
             initialValues={{ images: [], title: '', price: '', category: null, description: '' }}
             onSubmit={handleSubmit}

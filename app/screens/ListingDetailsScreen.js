@@ -1,5 +1,7 @@
 import React from 'react'
-import { StyleSheet, View, SafeAreaView, Image, StatusBar, Platform } from 'react-native'
+import { StyleSheet, View, SafeAreaView, StatusBar, Platform } from 'react-native'
+import { Image } from "react-native-expo-image-cache";
+
 
 import AppText from "../components/AppText"
 import colors from "../config/colors"
@@ -9,7 +11,7 @@ export default function ListingDetailsScreen({ route }) {
     const item = route.params
     return (
         <SafeAreaView style={styles.listingContainer}>
-            <Image style={styles.image} source={{ uri: item.image[0].url }}></Image>
+            <Image style={styles.image} uri={item.image[0].url} preview={{ uri: item.image[0].thumbnailUrl }} tint="light" />
             <View style={styles.detailsContainer}>
                 <AppText style={styles.title}>{item.title}</AppText>
                 <AppText style={styles.price}>Rs. {item.price}</AppText>
