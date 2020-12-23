@@ -3,7 +3,7 @@ import { create } from "apisauce"
 import cache from "../utility/cache";
 
 const apiClient = create({
-    baseURL: "http://192.168.10.7:3000/api/v1"
+    baseURL: "https://easy-shopping4112.herokuapp.com/api/v1"
 })
 
 const get = apiClient.get;

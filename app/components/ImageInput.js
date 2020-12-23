@@ -1,21 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, Alert } from 'react-native'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker"
-import * as Permissions from "expo-permissions";
 
 import colors from '../config/colors'
 export default function ImageInput({ imageUri, onChangeImage }) {
+    const [permissionGranted, setPermissionGranted] = useState(false);
+
     useEffect(() => {
         requestPermission();
     }, []);
 
     const requestPermission = async () => {
-        const result = await Permissions.askAsync(Permissions.CAMERA_ROLL)
-        if (!result.granted) alert("You need to enable permission to use this feature !")
+        const result = await ImagePicker.requestCameraRollPermissionsAsync();
+        if (!result.granted) {
+            setPermissionGranted(false)
+            //alert("You need to enable permission to use this feature !");
+            return null;
+        }
+
+        setPermissionGranted(true)
     }
 
-    const handleOnPress = () => {
+    const handleOnPress = async () => {
+        if(!permissionGranted) return await requestPermission();
+
         if (!imageUri) selectImage();
         else Alert.alert("Delete", "Are you sure you want to delete this image ?",[
             { text: "Yes", onPress: ()=> onChangeImage(null) },

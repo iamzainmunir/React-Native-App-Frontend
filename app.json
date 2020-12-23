@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "olx",
-    "slug": "olx",
+    "name": "Online Market",
+    "slug": "online-market",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "splash": {
       "image": "./app/assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#76CDE2"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,6 +22,10 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "Sell everything you don't need anymore.",
+    "android": {
+      "package": "com.ubit.online_market",
+      "versionCode": 1
+    }
   }
 }

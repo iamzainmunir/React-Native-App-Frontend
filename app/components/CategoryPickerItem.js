@@ -5,10 +5,12 @@ import AppText from './AppText'
 
 export default function CategoryPickerItem({item, onPress}) {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.container}>
-            <Icon name={item.icon} backgroundColor={item.backgroundColor} size={80}/>
-            <AppText style={styles.label}>{item.label}</AppText>
-        </TouchableOpacity>
+        <View style={styles.container}>
+                <TouchableOpacity onPress={onPress}>
+                    <Icon name={item.icon} backgroundColor={item.backgroundColor} size={80}/>
+                </TouchableOpacity>
+                <AppText style={styles.label}>{item.label}</AppText>
+        </View>
     )
 }
 
